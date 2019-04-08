@@ -1,0 +1,62 @@
+﻿@using dev.scan_back.Models;
+@model IEnumerable<dev.scan_back.Models.Procurement>
+
+<div>
+    <strong>Données Clients</strong>
+</div>
+@{
+
+    ScanDbContext db = new ScanDbContext();
+    var asst = db.assort.ToList();
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Ean13)
+            </th>
+            <th>Libellé du produit</th>
+            <th>
+                <span>Dernier approvisionnement</span>
+                @*@Html.DisplayNameFor(model => model.LastQuantity)*@
+            </th>
+            <th>
+                <span>Prix unitaire</span>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+
+            <th>
+                <span>Quantité mensuelle vendues</span>
+                @*@Html.DisplayNameFor(model => model.Quantity)*@
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var label = asst.Where(a => a.Ean13 == item.Ean13).First().Label;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ean13)
+                </td>
+                <td>
+                    @label
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}

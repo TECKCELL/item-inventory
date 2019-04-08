@@ -1,0 +1,84 @@
+﻿@model IEnumerable<dev.scan_back.Models.ImportViewModel>
+
+@{
+    ViewBag.Title = "Import";
+}
+
+
+    <h3 class="center-block">Scans</h3>
+    <div>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th><h6>Fichier</h6></th>
+                    <th><h6>Détails</h6></th>
+                    <th><h6>Suppression</h6></th>
+                </tr>
+            </thead>
+            <!--ko foreach : importViewModel.import -->
+            <!--ko if : Type == 2-->
+            <tbody>
+                <tr>
+                    <td data-bind="text:Date"></td>
+                    <td>SCAN.TXT</td>
+                    <td>
+                        <a data-bind="attr: { 'href':'@Url.Action("Details", "Scan")/' + Id }">
+                            Afficher les détails
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" data-bind="click: $parent.removeImport">Supprimer l'import</a>
+                    </td>
+                </tr>
+
+                @*<tr>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Matricule
+                                </th>
+                                <th>
+                                    Libellé
+                                </th>
+                                <th>
+                                    Quantité
+                                </th>
+                            </tr>
+                        </thead>
+                        <!--ko foreach : Scans -->
+                        <tbody>
+                            <tr>
+                                <td data-bind="text:Matricule"></td>
+                                <td data-bind="text:Libellé"></td>
+                                <td data-bind="text:Quantité"></td>
+                            </tr>
+                        </tbody>
+                        <!--/ko-->
+                    </table>
+                </td>
+            </tr>*@
+
+
+            </tbody>
+            <!--/ko-->
+            <!--/ko-->
+        </table>
+       
+    </div>
+  
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/knockout")
+
+<script>
+    var importData = @Html.Raw(Json.Encode(Model));
+</script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/custom/imports.js"></script>
+

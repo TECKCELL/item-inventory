@@ -1,0 +1,183 @@
+﻿@*<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+@*@Scripts.Render("~/bundles/jquery")*@
+
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/main.css">
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+
+
+
+
+    <header id="header">
+        <a class="logo" href='@Url.Action("UploadFiles", "Home")'>Home</a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+
+
+
+    </header>
+
+    @*<nav id="menu" class="hamburger is-closed" data-toggle="offcanvas">
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Item-L
+                    </a>
+                </li>
+                <li>
+
+                    <a href='@Url.Action("Diff", "Scan")'>Historique</a>
+
+                </li>
+                <li>
+
+                    <a href='@Url.Action("DisplayResult", "Scan")'>Inventaires</a>
+
+                </li>
+                <li>
+                    <a href='@Url.Action("simulator", "Scan")'>Simulation</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Team</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Apis <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Dropdown heading</li>
+                        <li><a href="#">Ali Express</a></li>
+                        <li><a href="#">Amazon</a></li>
+                        <li><a href="#">SAP</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                </li>
+            </ul>
+        </nav>*@
+    @*</nav>*@
+    @*<div id="heading">
+            <h3>Item-L</h3>
+        </div>*@
+
+
+
+    <section id="main" class="wrapper">
+
+        @*<div class="inner">
+                <div id="page-content-wrapper">
+
+
+                    <div class="content">
+
+                        <!-- Sidebar -->
+                        <!-- Page Content -->
+                    </div>
+                    <div id="wrapper">
+                        <div class="overlay"></div>
+                        <!-- Sidebar -->
+                        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                            <ul class="nav sidebar-nav">
+                                <li class="sidebar-brand">
+                                    <a href="#">
+                                        Item-L
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href='@Url.Action("Diff", "Scan")'>Historique</a>
+
+                                </li>
+                                <li>
+
+                                    <a href='@Url.Action("DisplayResult", "Scan")'>Inventaires</a>
+
+                                </li>
+                                <li>
+                                    <a href='@Url.Action("simulator", "Scan")'>Simulation</a>
+                                </li>
+                                <li>
+                                    <a href="#">Services</a>
+                                </li>
+                                <li>
+                                    <a href="#">Team</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Apis <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="dropdown-header">Dropdown heading</li>
+                                        <li><a href="#">Ali Express</a></li>
+                                        <li><a href="#">Amazon</a></li>
+                                        <li><a href="#">SAP</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Services</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- /#sidebar-wrapper -->
+                        <!-- /#page-content-wrapper -->
+                    </div>
+                </div>
+            </div>*@
+    </section>
+    <nav id="menu">
+        <ul class="links">
+            <li><a href='@Url.Action("Diff", "Scan")'>Historique</a></li>
+            <li><a href='@Url.Action("DisplayResult", "Scan")'>Inventaires</a></li>
+            <li><a href='@Url.Action("simulator", "Scan")'>Simulation</a></li>
+        </ul>
+    </nav>
+    <section id="banner">
+        <div class="inner">
+            <h1>Item-L</h1>
+            <p>
+                Vous rapprocher de l'exact
+            </p>
+        </div>
+        <video autoplay="" loop="" muted="" playsinline="" src="~/Content/Images/banner.mp4" type="video/mp4"></video>
+    </section>
+
+</body>
+
+</html>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/tablefold.css")
+
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/custom/jquery.min.js"></script>
+<script src="~/Scripts/custom/browser.min.js"></script>
+<script src="~/Scripts/custom/breakpoints.min.js"></script>
+<script src="~/Scripts/custom/util.js"></script>
+<script src="~/Scripts/custom/main.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+@Styles.Render("~/Content/Site.css")
+
+
+
+@RenderBody()

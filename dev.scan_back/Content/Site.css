@@ -1,0 +1,178 @@
+﻿/*.validation-summary-valid {
+    display: none;
+}
+
+/* Geek Quiz styles */
+.header {
+    height: 400px;
+    text-align: center;
+    line-height: 200px;
+    background: #faf2f3;
+}
+.flip-container .back,
+.flip-container .front {
+    border: 5px solid #00bcf2;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+#content {
+    position: relative;
+    background: #fff;
+    padding: 50px 0 0 0;
+}
+
+.option {
+    width: 140px;
+    margin: 5px;
+}
+
+div.correct p {
+    color: green;
+}
+
+div.incorrect p {
+    color: red;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.flip-container div.front, .flip-container div.back.flip {
+    display: block;
+}
+
+    .flip-container div.front.flip, .flip-container div.back {
+        display: none;
+    }
+.form_caja {
+    width: 1300px;
+    padding-top: 8px;
+    padding-bottom: 15px;
+    margin: 0 auto 20px auto;
+    background-color: #6D071A;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    color: #6D071A;
+    padding: 15px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 0px 0px 20px 0px;
+    border-top: 1px solid #D4D4D4;
+    background-color: #fff;
+    color: #6B0D0D 
+  
+}
+.matched {
+    background-color: yellow;
+}
+
+thead {
+    background-color: #6B0D0D; /*#446bb3*/
+    color: #fff;
+    font: bold 14px verdana;
+    padding: 20px;
+    line-height: 30px;
+    text-size-adjust:auto;
+}
+
+.table th {
+    text-align: left;
+    text-size-adjust: auto;
+    font-weight: lighter;
+    height: 40px;
+    border-bottom: 1px solid #D4D4D4;
+    color: white;
+    padding: 10px;
+    width:120px;
+}
+.table td {
+    color: #6B0D0D;
+}
+
+
+tbody tr:nth-child(even) {
+    background: #CCC;
+}
+
+
+
+tbody tr:nth-child(odd) {
+    background: #6D071A;
+}
+
+
+/*.form_caja td {
+        color: #ffffff;
+    }*/
+
+    /*SIDEBAR*/
+
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+.matched {
+    background-color: blueviolet;
+}
+
+.n {
+    text-align: right;
+}

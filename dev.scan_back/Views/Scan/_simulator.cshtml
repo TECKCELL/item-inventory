@@ -1,0 +1,143 @@
+﻿@model IEnumerable<dev.scan_back.Models.SimulationViewModel>
+@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+
+
+
+<br />
+@Styles.Render("~/Content/Site.css")
+@Styles.Render("~/Content/dropDown.less")
+
+<div>
+    <p style="display:inline">Filtre par libellé: <input data-bind="value: filter, valueUpdate: 'afterkeydown'" /></p>
+    @*<p style="display:inline-block">Recherche par matricule: <input data-bind="value: search, valueUpdate: 'afterkeydown'" /></p>*@
+</div>
+<p style="display:inline-table"><strong>Simulateur</strong></p>
+<div class="container">
+    <table id="Mytable" class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    <h6>Matricule</h6>
+                </th>
+                <th>
+                    <h6>Libellé produit</h6>
+                </th>
+                <th>
+                    <h6>Stock réel</h6>
+                </th>
+                <th>
+                    <h6>Quantités mensuelles vendues</h6>
+                </th>
+                <th>
+                    <h6>Quantités commandées</h6>
+
+                </th>
+                <th>
+                    <h6>Stock M+1</h6>
+
+                </th>
+
+                <th>
+                    <h6>Stock M+2</h6>
+
+                </th>
+                <th>
+                    <h6>Stock M+3</h6>
+
+                </th>
+            </tr>
+        <thead>
+        <tbody data-bind="template: { name: 'itemsTmpl', foreach: filteredItems }"></tbody>
+        <script id="itemsTmpl" type="text/html">
+            <tr data-bind="css: { matched: $data === $root.firstMatch() }">
+                <td data-bind="text:Ean13()"></td>
+                <td data-bind="text:label()"></td>
+                <td data-bind="text:stockReel()"></td>
+                <td><input type="number" data-bind="value: qteSales" /></td>
+                <td><input type="number" data-bind="value: orderedQte" /></td>
+                <td data-bind="text:M1()  ,style: { color: (M1())  < 0 ? 'red':'green' }"></td>
+                <td data-bind="text:M2()  ,style: { color: (M2())  < 0 ? 'red':'green' }"></td>
+                <td data-bind="text:M3()  ,style: { color: (M3())  < 0 ? 'red':'green' }"></td>
+            </tr>
+            @*<tr>
+                <td>
+                    <a href="#" data-bind="click: addItem">Add Item</a>
+                </td>
+                <td></td>
+                <td class="n">Total: </td>
+                <td class="n" data-bind="text: total"></td>
+                <td></td>
+            </tr>*@
+        </script>
+
+    </table>
+
+</div>
+
+
+
+@*<h3>7- Use ko.utils.arrayMap to build an array with just categories used</h3>
+    <p data-bind="text: ko.toJSON(justCategories)"></p>
+
+    <h3>8- Use ko.utils.arrayGetDistinctValues to get just the unique categories used</h3>
+    <p data-bind="text: ko.toJSON(uniqueCategories)"></p>
+
+    <h3>9- Use ko.utils.compareArrays to find available categories that haven't been used</h3>
+    <p data-bind="text: ko.toJSON(missingCategories)"></p>*@
+
+@*<h3>10- Convert items to JSON</h3>
+    <p data-bind="text: ko.toJSON(items)"></p>
+
+    <h3>11- Map items to send back to server and convert to JSON</h3>
+    <p data-bind="text: ko.toJSON(mappedItems)"></p>*@
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/knockout")
+@*@Styles.Render("~/Content/Site.css")*@
+
+
+<script>
+
+    var Simulation = @Html.Raw(Json.Encode(Model));
+</script>
+<script src="~/Scripts/custom/simulation.js"></script>
+
+<div>
+    <button id="btnExport" onclick="fnExcelReport();" class="button button4">Exporter sur Excel</button>
+</div>
+<script>
+    function fnExcelReport() {
+        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j = 0;
+        tab = document.getElementById('Mytable'); // id of table
+
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+        application / csv
+        return (sa);
+    }
+
+</script>

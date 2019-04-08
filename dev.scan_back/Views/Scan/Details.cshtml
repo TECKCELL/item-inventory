@@ -1,0 +1,86 @@
+﻿
+@model IEnumerable<dev.scan_back.Models.ScanViewModel>
+
+<div class="container">
+    <table  id="Mytable" class="table">
+        <thead>
+            <tr>
+                @*<th>
+                        <select>
+                            <option>antibiotique</option>
+                           <option>Vaccins</option>
+                        </select>
+
+                    </th>*@
+                <th>
+                    <h6>Matricule</h6>
+
+                </th>
+                <th>
+                    <h6>Libellé</h6>
+                </th>
+                <th>
+                    <h6>Quantité</h6>
+                </th>
+                @*<th>
+                        prix unitaire
+                    </th>*@
+
+            </tr>
+        </thead>
+        <!--ko foreach : scanViewModel.scans -->
+        <tbody>
+            <tr>
+                <td data-bind="text:Matricule"></td>
+                <td data-bind="text:Libellé"></td>
+                <td data-bind="text:Quantité"></td>
+            </tr>
+        </tbody>
+        <!--/ko-->
+    </table>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/knockout")
+
+<script>
+    var DetailData = @Html.Raw(Json.Encode(Model));
+</script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/custom/detail.js"></script>
+<div>
+    <button id="btnExport" onclick="fnExcelReport();" class="button button4">Exporter sur Excel</button>
+</div>
+<script>
+    function fnExcelReport() {
+        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j = 0;
+        tab = document.getElementById('Mytable'); // id of table
+
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+        application / csv
+        return (sa);
+    }
+
+</script>

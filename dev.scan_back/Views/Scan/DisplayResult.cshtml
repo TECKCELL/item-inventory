@@ -1,0 +1,143 @@
+﻿@using dev.scan_back.Models;
+@model IEnumerable<dev.scan_back.Models.ResultScan>
+
+@Styles.Render("~/Content/Site.css")
+@Styles.Render("~/Content/dropDown.less")
+
+<div class="container">
+    <strong>Résultat de l'inventaire</strong>
+    <!-- Example split danger button -->
+    <div class="styled-select blue semi-square">
+
+        <select data-bind="event:{ change: resultScan.selectCategorie()}"  id="categorie">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+            <option>Sélectionner une catégorie</option>
+            <option>Aperitif</option>
+            <option>Biere</option>
+            <option>Vins</option>
+        </select>
+
+        @*<p>
+            Selectiojnner une catéguorie
+            <select data-bind="options: availableCountries, selectedOptions: chosenCountries" size="5" multiple="true"></select>
+        </p>*@
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <table id="Mytable" class="table">
+            <thead style="font-weight:bold;">
+                <tr>
+                    @*<th>
+            <select>
+                <option>antibiotique</option>
+               <option>Vaccins</option>
+            </select>
+
+        </th>*@
+                    <th>
+                        <h6>Matricule</h6>
+
+                    </th>
+                    <th>
+                        <h6>Libellé</h6>
+                    </th>
+                    <th>
+                        <h6>Catégorie</h6>
+                    </th>
+                    <th>
+                        <h6>Prix (FCFA)</h6>
+                    </th>
+                    <th>
+                        <h6>Stock réel</h6> 
+                    </th>
+                    <th>
+                        <h6>Stock théorique</h6> 
+                    </th>
+                    <th>
+                        <h6>Démarque</h6>
+                    </th>
+                    <th>
+                        <h6>Montant démarque (FCFA)</h6> 
+                    </th>
+
+                </tr>
+            </thead>
+            <!--ko foreach : resultScan.result -->
+            <tbody>
+                <tr>
+                    <td data-bind="text:Matricule"></td>
+                    <td data-bind="text:Libellé"></td>
+                    <td data-bind="text:catégorie"></td>
+                    <td data-bind="text:Price"></td>
+                    <td data-bind="text:Stockreel"></td>
+                    <td data-bind="text:Stockthéorique"></td>
+                    <td data-bind="text:demarque"></td>
+                    <td data-bind="text:MtnDemarque"></td>
+                </tr>
+            </tbody>
+            <!--/ko-->
+        </table>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
+
+    <script>
+    var resultData = @Html.Raw(Json.Encode(Model));
+    </script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/custom/resultScan.js"></script>
+
+
+<div>
+    <button id="btnExport" onclick="fnExcelReport();" class="button button4">Exporter sur Excel</button>
+</div>
+<script>
+    function fnExcelReport() {
+        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j = 0;
+        tab = document.getElementById('Mytable'); // id of table
+
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+        application / csv
+        return (sa);
+    }
+    
+</script>
+
+@*<div class="centrer">
+        @{
+
+            Html.RenderAction("ShowCustomerData", "Scan");
+
+        }
+    </div>*@
+@*<div class="center">
+        @{
+
+            @Html.Partial("~/Views/Scan/_simulator.cshtml");
+        }
+    </div>*@
