@@ -1,0 +1,59 @@
+﻿@model IEnumerable<dev.scan_back.Models.OperationViewModel>
+
+@{
+    ViewBag.Title = "OperationHisto";
+}
+
+<h2>OperationHisto</h2>
+
+<p>
+  
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <h6>NUMERO</h6>
+            </th>
+            <th>
+                <h6>DATE DE DEBUT</h6>
+            <th>
+                <h6>DATE DE DEBUT</h6>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Number)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.beginDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.endDate)
+    </td>
+
+    @*<td>
+            <a data-bind="attr: { 'href':'@Url.Action("Details", "Scan")/' + Id }">
+                Afficher les détails
+            </a>
+        </td>*@
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+        @Html.ActionLink(" Afficher le comptage", "DisplayCounting", new { OperationId = item.Id })
+        @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+        @Html.ActionLink(" Afficher les détails", "DisplayProduct", new { OperationId = item.Id })
+        @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+    </td>
+
+</tr>
+}
+
+</table>

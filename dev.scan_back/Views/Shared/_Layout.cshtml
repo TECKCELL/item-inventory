@@ -13,12 +13,12 @@
 
 
     <header id="header">
-        <a class="logo" href='@Url.Action("UploadFiles", "Home")'>Home</a>
+        <a class="logo" href='@Url.Action("UploadFiles", "Home")'><h6>FICHIER</h6></a>
+
+        <a class="logo" href='@Url.Action("AdminImmo", "Home")'><h6>Gestion des immobilisations</h6></a>
         <nav>
             <a href="#menu">Menu</a>
         </nav>
-
-
 
     </header>
 
@@ -147,6 +147,8 @@
             <li><a href='@Url.Action("Diff", "Scan")'>Historique</a></li>
             <li><a href='@Url.Action("DisplayResult", "Scan")'>Inventaires</a></li>
             <li><a href='@Url.Action("simulator", "Scan")'>Simulation</a></li>
+            <li><a href='@Url.Action("simulator", "Scan")'>Immobilisation</a></li>
+            <li><a href='@Url.Action("DisplayOperation", "Scan")'>Historique des opérations</a></li>
         </ul>
     </nav>
     <section id="banner">
@@ -169,11 +171,14 @@
 @Styles.Render("~/Content/tablefold.css")
 
 @Scripts.Render("~/bundles/bootstrap")
+@*<link href="~/Content/css/addons/datatables-select.min.css" rel="stylesheet" />
+<link href="~/Content/css/addons/datatables.min.css" rel="stylesheet" />*@
 <script src="~/Scripts/custom/jquery.min.js"></script>
 <script src="~/Scripts/custom/browser.min.js"></script>
 <script src="~/Scripts/custom/breakpoints.min.js"></script>
 <script src="~/Scripts/custom/util.js"></script>
 <script src="~/Scripts/custom/main.js"></script>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 @Styles.Render("~/Content/Site.css")

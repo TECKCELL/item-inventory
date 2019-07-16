@@ -1,0 +1,71 @@
+viewModel.familly = ko.dependentObservable(function () {
+        var arrayFirst = ko.utils.arrayMap(this.Items(), function (item) {
+            return item.Familly()
+             
+            //ko.utils.stringStartsWith(item.label().toLowerCase(), filter);
+
+        });
+        return ko.utils.arrayGetDistinctValues(arrayFirst).sort();
+    }, viewModel)
+
+
+
+searchFamilly: function () {
+
+            var familly = viewModel.Familly();
+            if (familly) {
+               
+                    var array =  ko.utils.arrayFilter(viewModel.items(), function (item) {
+                        return item.Familly().includes(familly);;
+                    });
+                    
+                
+                this.items(array);
+            }
+           
+           
+        },
+
+
+
+familly:function(){
+itemArray = viewModel.items();
+
+           var arrayFirst = ko.utils.arrayMap(itemArray, function (item) {
+            return item.Familly()
+ });
+array = ko.utils.arrayGetDistinctValues(arrayFirst).sort();
+              return array;
+
+},
+
+{
+        "pagingType": "full " // false to disable pagination (or any other option)
+    }
+
+filteredItems
+
+template: { name: 'itemsTmpl', foreach: filteredItems }
+
+dataTablesForEach:{data:filteredItems
+
+
+
+                          ,dataTableOptions:{deferRender: true,paging: true,scrollX: true,columns:[
+               { data: 'NumInvent' },
+               { data: 'NumFiche' },
+               { data: 'LabelImmo' },
+               { data: 'CodeProduit'},
+               { data: 'Localisation' },
+               { data: 'Familly' },
+               { data: 'SFamilly' },
+               { data: 'Fiche produit'}],responsive: true
+
+
+
+
+
+
+
+               }
+               }

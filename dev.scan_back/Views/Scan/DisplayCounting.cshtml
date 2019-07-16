@@ -1,0 +1,82 @@
+﻿@using dev.scan_back.Models;
+@model IEnumerable<dev.scan_back.Models.CountingProductFileViewModel>
+@{
+    ViewBag.Title = "DisplayCounting";
+}
+@Styles.Render("~/Content/dropDown.less")
+<h2>DisplayCounting</h2>
+
+<div class="container">
+    <div class="styled-select blue semi-square">
+        <select data-bind="options:familly(),
+            value:Familly,event:{ change: searchFamilly()},
+            optionsCaption:'Selectionner une famille...'">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+        </select>
+    </div>
+    <br />
+    <br />
+    <div class="styled-select blue semi-square">
+        <select data-bind="options:Sfamilly,
+            value:Ssfamilly,event:{ change: SearchSfamilly()},
+            optionsCaption:'Selectionner une sous-famille...'">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+        </select>
+    </div>
+    <div>
+        <p style="display:inline">Filtre par libellé: <input data-bind="value: filter, valueUpdate: 'afterkeydown'" /></p>
+
+        @*<p style="display:inline-block">Recherche par matricule: <input data-bind="value: search, valueUpdate: 'afterkeydown'" /></p>*@
+    </div>
+    <br />
+    <br />
+    <div><span data-bind="text:total()"></span>-Produit(s)</div>
+    <table class="table">
+        <thead>
+            <tr>
+
+
+                <th>
+                    <h6>Libellé du bien</h6>
+                </th>
+
+                <th>
+                    <h6>Famille</h6>
+                </th>
+                <th>
+                    <h6>Sous-Famille</h6>
+                </th>
+                <th>
+                    <h6>Quantité</h6>
+                </th>
+
+
+            </tr>
+        <thead>
+        <tbody data-bind="template: { name: 'itemsTmpl', foreach: filteredItems }"></tbody>
+        <script id="itemsTmpl" type="text/html">
+            <tr>
+                <td data-bind="text:LabelImmo"></td>
+                <td data-bind="text:Familly"></td>
+                <td data-bind="text:SFamilly"></td>
+                <td data-bind="text:Quantity"></td>
+            </tr>
+        </script>
+        <tr>
+
+            @*<td></td>
+                <td class="n">Total: </td>
+                <td class="n" data-bind="text: total"></td>
+                <td></td>*@
+        </tr>
+
+    </table>
+
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/knockout")
+
+<script>
+    var CountingProductFile = @Html.Raw(Json.Encode(Model));
+</script>
+<script src="~/Scripts/custom/countingProductFile.js"></script>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -26,6 +27,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -288,19 +290,59 @@
     <Compile Include="Migrations\201811251300047_Procurement.Designer.cs">
       <DependentUpon>201811251300047_Procurement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905160842525_ProductFile1.cs" />
+    <Compile Include="Migrations\201905160842525_ProductFile1.Designer.cs">
+      <DependentUpon>201905160842525_ProductFile1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905160932025_ProductFileEnum.cs" />
+    <Compile Include="Migrations\201905160932025_ProductFileEnum.Designer.cs">
+      <DependentUpon>201905160932025_ProductFileEnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161108000_Operation.cs" />
+    <Compile Include="Migrations\201905161108000_Operation.Designer.cs">
+      <DependentUpon>201905161108000_Operation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161245126_Operation1.cs" />
+    <Compile Include="Migrations\201905161245126_Operation1.Designer.cs">
+      <DependentUpon>201905161245126_Operation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161604204_Operation2.cs" />
+    <Compile Include="Migrations\201905161604204_Operation2.Designer.cs">
+      <DependentUpon>201905161604204_Operation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905291614430_CodeProduit.cs" />
+    <Compile Include="Migrations\201905291614430_CodeProduit.Designer.cs">
+      <DependentUpon>201905291614430_CodeProduit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906031225443_Operation3.cs" />
+    <Compile Include="Migrations\201906031225443_Operation3.Designer.cs">
+      <DependentUpon>201906031225443_Operation3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906121721184_scandev5.cs" />
+    <Compile Include="Migrations\201906121721184_scandev5.Designer.cs">
+      <DependentUpon>201906121721184_scandev5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907011130389_recordDate.cs" />
+    <Compile Include="Migrations\201907011130389_recordDate.Designer.cs">
+      <DependentUpon>201907011130389_recordDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\assort.cs" />
     <Compile Include="Models\AssortViewModelcs.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\CountingProductFileViewModel.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Import.cs" />
     <Compile Include="Models\ImportViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OperationViewModel.cs" />
     <Compile Include="Models\Procurement.cs" />
     <Compile Include="Models\ProductFile.cs" />
+    <Compile Include="Models\ProductfileViewModel.cs" />
     <Compile Include="Models\ResultScan.cs" />
     <Compile Include="Models\SampleData.cs" />
     <Compile Include="Models\SCANS.cs" />
@@ -323,19 +365,126 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\accordeon.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\addons\datatables-select.css" />
+    <Content Include="Content\css\addons\datatables-select.min.css" />
+    <Content Include="Content\css\addons\datatables.css" />
+    <Content Include="Content\css\addons\datatables.min.css" />
+    <Content Include="Content\css\addons\directives.css" />
+    <Content Include="Content\css\addons\directives.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\jquery.dataTables.css" />
+    <Content Include="Content\css\jquery.dataTables.min.css" />
+    <Content Include="Content\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\css\mdb.css" />
+    <Content Include="Content\css\mdb.lite.css" />
+    <Content Include="Content\css\mdb.lite.min.css" />
+    <Content Include="Content\css\mdb.min.css" />
+    <Content Include="Content\css\modules\animations-extended.css" />
+    <Content Include="Content\css\modules\animations-extended.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style.min.css" />
+    <Content Include="Content\datatables.extensions\AutoFill\css\dataTables.autoFill.css" />
+    <Content Include="Content\datatables.extensions\AutoFill\css\dataTables.autoFill.min.css" />
+    <Content Include="Content\datatables.extensions\AutoFill\images\filler.png" />
+    <Content Include="Content\datatables.extensions\ColReorder\css\dataTables.colReorder.css" />
+    <Content Include="Content\datatables.extensions\ColReorder\css\dataTables.colReorder.min.css" />
+    <Content Include="Content\datatables.extensions\ColReorder\images\insert.png" />
+    <Content Include="Content\datatables.extensions\ColVis\css\dataTables.colVis.css" />
+    <Content Include="Content\datatables.extensions\ColVis\css\dataTables.colvis.jqueryui.css" />
+    <Content Include="Content\datatables.extensions\ColVis\css\dataTables.colVis.min.css" />
+    <Content Include="Content\datatables.extensions\FixedColumns\css\dataTables.fixedColumns.css" />
+    <Content Include="Content\datatables.extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
+    <Content Include="Content\datatables.extensions\FixedHeader\css\dataTables.fixedHeader.css" />
+    <Content Include="Content\datatables.extensions\FixedHeader\css\dataTables.fixedHeader.min.css" />
+    <Content Include="Content\datatables.extensions\KeyTable\css\dataTables.keyTable.css" />
+    <Content Include="Content\datatables.extensions\KeyTable\css\dataTables.keyTable.min.css" />
+    <Content Include="Content\datatables.extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="Content\datatables.extensions\Scroller\css\dataTables.scroller.css" />
+    <Content Include="Content\datatables.extensions\Scroller\css\dataTables.scroller.min.css" />
+    <Content Include="Content\datatables.extensions\Scroller\images\loading-background.png" />
+    <Content Include="Content\datatables.extensions\TableTools\css\dataTables.tableTools.css" />
+    <Content Include="Content\datatables.extensions\TableTools\css\dataTables.tableTools.min.css" />
+    <Content Include="Content\datatables.extensions\TableTools\images\background.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\collection.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\collection_hover.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\copy.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\copy_hover.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\csv.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\csv_hover.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\pdf.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\pdf_hover.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\print.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\print_hover.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\xls.png" />
+    <Content Include="Content\datatables.extensions\TableTools\images\xls_hover.png" />
     <Content Include="Content\font-awsome.min.css" />
+    <Content Include="Content\Images\back_disabled.png" />
+    <Content Include="Content\Images\back_enabled.png" />
+    <Content Include="Content\Images\back_enabled_hover.png" />
     <Content Include="Content\Images\banner.jpg" />
     <Content Include="Content\Images\banner.mp4" />
     <Content Include="Content\Images\bg.jpg" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\forward_disabled.png" />
+    <Content Include="Content\Images\forward_enabled.png" />
+    <Content Include="Content\Images\forward_enabled_hover.png" />
+    <Content Include="Content\Images\sort_asc.png" />
+    <Content Include="Content\Images\sort_asc_disabled.png" />
+    <Content Include="Content\Images\sort_both.png" />
+    <Content Include="Content\Images\sort_desc.png" />
+    <Content Include="Content\Images\sort_desc_disabled.png" />
     <Content Include="Content\main.css" />
     <Content Include="Content\nav.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
@@ -346,8 +495,6 @@
     <Content Include="Scripts\app\app.viewmodel.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\home.viewmodel.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -402,6 +549,106 @@
     <Content Include="Content\sass\libs\_vars.scss" />
     <Content Include="Content\sass\libs\_vendor.scss" />
     <Content Include="Content\sass\main.scss" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\countingProductFile.js" />
+    <Content Include="Scripts\datatables.extensions\AutoFill\js\dataTables.autoFill.js" />
+    <Content Include="Scripts\datatables.extensions\AutoFill\js\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\datatables.extensions\AutoFill\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\ColReorder\js\dataTables.colReorder.js" />
+    <Content Include="Scripts\datatables.extensions\ColReorder\js\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\datatables.extensions\ColReorder\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\ColVis\js\dataTables.colVis.js" />
+    <Content Include="Scripts\datatables.extensions\ColVis\js\dataTables.colVis.min.js" />
+    <Content Include="Scripts\datatables.extensions\ColVis\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\FixedColumns\js\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\datatables.extensions\FixedColumns\js\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\datatables.extensions\FixedHeader\js\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\datatables.extensions\FixedHeader\js\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\datatables.extensions\FixedHeader\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\KeyTable\js\dataTables.keyTable.js" />
+    <Content Include="Scripts\datatables.extensions\KeyTable\js\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\datatables.extensions\KeyTable\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\Responsive\js\dataTables.responsive.js" />
+    <Content Include="Scripts\datatables.extensions\Responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Scripts\datatables.extensions\Scroller\js\dataTables.scroller.js" />
+    <Content Include="Scripts\datatables.extensions\Scroller\js\dataTables.scroller.min.js" />
+    <Content Include="Scripts\datatables.extensions\Scroller\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\TableTools\js\dataTables.tableTools.js" />
+    <Content Include="Scripts\datatables.extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="Scripts\datatables.extensions\TableTools\Readme.txt" />
+    <Content Include="Scripts\datatables.extensions\TableTools\swf\copy_csv_xls.swf" />
+    <Content Include="Scripts\datatables.extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\scss\addons\_datatables-select.scss" />
+    <Content Include="Content\scss\addons\_datatables.scss" />
+    <Content Include="Content\scss\addons\_directives.scss" />
+    <Content Include="Content\scss\addons\_flags.scss" />
+    <Content Include="Content\scss\addons\_hierarchical-display.scss" />
+    <Content Include="Content\scss\core\bootstrap\_functions.scss" />
+    <Content Include="Content\scss\core\bootstrap\_rfs.scss" />
+    <Content Include="Content\scss\core\bootstrap\_variables.scss" />
+    <Content Include="Content\scss\core\_colors.scss" />
+    <Content Include="Content\scss\core\_global.scss" />
+    <Content Include="Content\scss\core\_helpers.scss" />
+    <Content Include="Content\scss\core\_masks.scss" />
+    <Content Include="Content\scss\core\_mixins.scss" />
+    <Content Include="Content\scss\core\_typography.scss" />
+    <Content Include="Content\scss\core\_variables.scss" />
+    <Content Include="Content\scss\core\_waves.scss" />
+    <Content Include="Content\scss\free\modules\animations-extended\animations-extended.scss" />
+    <Content Include="Content\scss\free\modules\animations-extended\_module.scss" />
+    <Content Include="Content\scss\free\_animations-basic.scss" />
+    <Content Include="Content\scss\free\_badges.scss" />
+    <Content Include="Content\scss\free\_buttons.scss" />
+    <Content Include="Content\scss\free\_cards.scss" />
+    <Content Include="Content\scss\free\_carousels.scss" />
+    <Content Include="Content\scss\free\_depreciated.scss" />
+    <Content Include="Content\scss\free\_dropdowns.scss" />
+    <Content Include="Content\scss\free\_footers.scss" />
+    <Content Include="Content\scss\free\_forms.scss" />
+    <Content Include="Content\scss\free\_input-group.scss" />
+    <Content Include="Content\scss\free\_list-group.scss" />
+    <Content Include="Content\scss\free\_loader.scss" />
+    <Content Include="Content\scss\free\_modals.scss" />
+    <Content Include="Content\scss\free\_msc.scss" />
+    <Content Include="Content\scss\free\_navbars.scss" />
+    <Content Include="Content\scss\free\_pagination.scss" />
+    <Content Include="Content\scss\free\_steppers.scss" />
+    <Content Include="Content\scss\free\_switch.scss" />
+    <Content Include="Content\scss\free\_tables.scss" />
+    <Content Include="Content\scss\free\_treeview.scss" />
+    <Content Include="Content\scss\mdb.lite.scss" />
+    <Content Include="Content\scss\mdb.scss" />
+    <Content Include="Content\scss\_custom-skin.scss" />
+    <Content Include="Content\scss\_custom-styles.scss" />
+    <Content Include="Content\scss\_custom-variables.scss" />
+    <Content Include="Scripts\datatables.extensions\Responsive\Readme.md" />
+    <Content Include="Content\Images\Sorting icons.psd" />
+    <Content Include="Content\datatables.extensions\TableTools\images\psd\printer.psd" />
+    <Content Include="Content\datatables.extensions\TableTools\images\psd\file_types.psd" />
+    <Content Include="Content\datatables.extensions\TableTools\images\psd\copy document.psd" />
+    <Content Include="Content\datatables.extensions\TableTools\images\psd\collection.psd" />
+    <Content Include="Content\datatables.extensions\Responsive\css\dataTables.responsive.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\custom\assort.js" />
     <Content Include="Scripts\custom\breakpoints.min.js" />
@@ -410,6 +657,8 @@
     <Content Include="Scripts\custom\imports.js" />
     <Content Include="Scripts\custom\jquery.min.js" />
     <Content Include="Scripts\custom\main.js" />
+    <Content Include="Scripts\custom\operation.js" />
+    <Content Include="Scripts\custom\productFile.js" />
     <Content Include="Scripts\custom\resultScan.js" />
     <Content Include="Scripts\custom\simulation.js" />
     <Content Include="Scripts\custom\table2CSV.js" />
@@ -418,6 +667,36 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\js\addons\datatables-select.js" />
+    <Content Include="Scripts\js\addons\datatables-select.min.js" />
+    <Content Include="Scripts\js\addons\datatables.js" />
+    <Content Include="Scripts\js\addons\datatables.min.js" />
+    <Content Include="Scripts\js\addons\imagesloaded.pkgd.min.js" />
+    <Content Include="Scripts\js\addons\jquery.zmd.hierarchical-display.js" />
+    <Content Include="Scripts\js\addons\jquery.zmd.hierarchical-display.min.js" />
+    <Content Include="Scripts\js\addons\masonry.pkgd.min.js" />
+    <Content Include="Scripts\js\addons\rating.js" />
+    <Content Include="Scripts\js\bootstrap.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\js\mdb.js" />
+    <Content Include="Scripts\js\mdb.min.js" />
+    <Content Include="Scripts\js\modules\bs-custom-file-input.js" />
+    <Content Include="Scripts\js\modules\chart.js" />
+    <Content Include="Scripts\js\modules\enhanced-modals.js" />
+    <Content Include="Scripts\js\modules\forms-free.js" />
+    <Content Include="Scripts\js\modules\jquery.easing.js" />
+    <Content Include="Scripts\js\modules\scrolling-navbar.js" />
+    <Content Include="Scripts\js\modules\treeview.js" />
+    <Content Include="Scripts\js\modules\velocity.js" />
+    <Content Include="Scripts\js\modules\velocity.min.js" />
+    <Content Include="Scripts\js\modules\waves.js" />
+    <Content Include="Scripts\js\modules\wow.js" />
+    <Content Include="Scripts\js\popper.min.js" />
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
@@ -428,8 +707,16 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\sammy-0.7.5.js" />
     <Content Include="Scripts\sammy-0.7.5.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -476,36 +763,27 @@
     <Content Include="Views\Scan\_Procurement.cshtml" />
     <Content Include="Views\Scan\_simulator.cshtml" />
     <Content Include="Views\Home\UploadFilesClient.cshtml" />
+    <Content Include="Views\Scan\DisplayProduct.cshtml" />
+    <Content Include="Views\Scan\_productCard.cshtml" />
+    <Content Include="Views\Home\Operation.cshtml" />
+    <Content Include="Views\Scan\OperationHisto.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Scan\DisplayCounting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fonts\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Result\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css.map" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -531,6 +809,39 @@
     <EmbeddedResource Include="Migrations\201811251300047_Procurement.resx">
       <DependentUpon>201811251300047_Procurement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905160842525_ProductFile1.resx">
+      <DependentUpon>201905160842525_ProductFile1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905160932025_ProductFileEnum.resx">
+      <DependentUpon>201905160932025_ProductFileEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161108000_Operation.resx">
+      <DependentUpon>201905161108000_Operation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161245126_Operation1.resx">
+      <DependentUpon>201905161245126_Operation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161604204_Operation2.resx">
+      <DependentUpon>201905161604204_Operation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291614430_CodeProduit.resx">
+      <DependentUpon>201905291614430_CodeProduit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031225443_Operation3.resx">
+      <DependentUpon>201906031225443_Operation3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906121721184_scandev5.resx">
+      <DependentUpon>201906121721184_scandev5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907011130389_recordDate.resx">
+      <DependentUpon>201907011130389_recordDate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -556,6 +867,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

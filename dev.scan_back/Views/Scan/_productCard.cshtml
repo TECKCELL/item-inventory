@@ -1,0 +1,138 @@
+﻿@using dev.scan_back.Models;
+@model dev.scan_back.Models.ProductfileViewModel
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<div>
+
+    @using (Html.BeginForm("SaveProduct", "Scan",new { id = "SaveProduct" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    <fieldset>
+        <div>
+            @Html.LabelFor(m => m.LabelImmo)
+            @Html.TextBoxFor(m => m.LabelImmo, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.CLabelImmo)
+            @Html.TextBoxFor(m => m.CLabelImmo, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.CodeProduit)
+            @Html.TextBoxFor(m => m.CodeProduit, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { @class = "text ui-widget-content ui-corner-all" })
+        </div> 
+       
+        <div>
+            @Html.Label("Facture")
+            <input type='file' value="Selectionner une facture" onchange="previewFile()" />
+            <br />
+            <img id="myImg" src="#" alt="facture du produit" height=300 width=200>
+        </div>
+        
+        <div>
+            @Html.LabelFor(m => m.NumFiche)
+            @Html.TextBoxFor(m => m.NumFiche, new { @class = "text ui-widget-content ui-corner-all", @readonly = "readonly" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.NumInvent)
+            @Html.TextBoxFor(m => m.NumInvent, new { @class = "text ui-widget-content ui-corner-all", @readonly = "readonly" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Localisation)
+            @Html.TextBoxFor(m => m.Localisation, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Familly)
+            @Html.TextBoxFor(m => m.Familly, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.SFamilly)
+            @Html.TextBoxFor(m => m.SFamilly, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Supplier)
+            @Html.TextBoxFor(m => m.Supplier, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Matricule)
+            @Html.TextBoxFor(m => m.Matricule, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Tva)
+            @Html.EditorFor(m => m.Tva, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ValBuy)
+            @Html.EditorFor(m => m.ValBuy, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.MotifOut)
+            @Html.TextBoxFor(m => m.MotifOut, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.AcquiDate)
+            @Html.EditorFor(m => m.AcquiDate, new { htmlAttributes = new { @class = "datepicker", @PlaceHolder = "mm/dd/yyyy", type = "datetime-local" } })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.OutDate)
+            @Html.EditorFor(m => m.OutDate, new { htmlAttributes = new { @class = "datepicker", @PlaceHolder = "mm/dd/yyyy", type = "datetime-local" } })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ServiceDate)
+            @Html.EditorFor(m => m.ServiceDate, new { htmlAttributes = new { @class = "datepicker", @PlaceHolder = "mm/dd/yyyy", type = "datetime-local" } })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.PriceSes)
+            @Html.EditorFor(m => m.PriceSes, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+        <div>
+            @Html.LabelFor(m => m.immobilisationId)
+            @Html.DropDownListFor(m => m.immobilisationId, Model.Immobilisation, "- Selectionnez -")
+        </div>
+        @Html.LabelFor(m => m.amortissement)
+        <div>
+
+            @Html.RadioButtonFor(m => m.amortissement, Amortissement.Dégressif, new { id = Amortissement.Dégressif })<label for=@Amortissement.Dégressif>@Amortissement.Dégressif</label>
+        </div>
+        <div>
+
+            @Html.RadioButtonFor(m => m.amortissement, Amortissement.Linéaire, new { id = Amortissement.Linéaire })<label for=@Amortissement.Linéaire>@Amortissement.Linéaire</label>
+        </div>
+        <div>
+            @Html.RadioButtonFor(m => m.amortissement, Amortissement.Sans, new { id = Amortissement.Sans })<label for=@Amortissement.Sans>@Amortissement.Sans</label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Coeff)
+            @Html.EditorFor(m => m.Coeff, new { @class = "text ui-widget-content ui-corner-all" })
+        </div>
+
+    </fieldset>
+
+    }
+    <!-- Allow form submission with keyboard without duplicating the dialog button -->
+
+</div>
+<script>
+    function previewFile() {
+        var preview = document.querySelector('img'); //selects the query named img
+        var file = document.querySelector('input[type=file]').files[0]; //sames as here
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.src = "";
+        }
+    }
+
+    previewFile();  //calls the function named previewFile()
+</script>

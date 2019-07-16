@@ -1,0 +1,141 @@
+﻿@using dev.scan_back.Models;
+@model IEnumerable<dev.scan_back.Models.ProductfileViewModel>
+@{
+    ViewBag.Title = "DisplayProduct";
+}
+
+@*@Styles.Render("~/Content/Site.css")*@
+@Styles.Render("~/Content/dropDown.less")
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<h2>IMMOBILISATIONS</h2>
+<br />
+
+
+<div class="container">
+    <div>
+        <p style="display:inline">Filtre par libellé: <input data-bind="value: filter, valueUpdate: 'afterkeydown'" /></p>
+
+        @*<p style="display:inline-block">Recherche par matricule: <input data-bind="value: search, valueUpdate: 'afterkeydown'" /></p>*@
+    </div>
+
+    <div class="styled-select blue semi-square">
+        <select data-bind="options:familly(),
+            value:Familly,event:{ change: searchFamilly()},
+            optionsCaption:'Selectionner une famille...'">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+        </select>
+    </div>
+
+
+
+    @*<button data-bind="click: searchFamilly()">Click me</button>*@
+    <br />
+    <br />
+    <div class="styled-select blue semi-square">
+        <select data-bind="options:Sfamilly,
+            value:Ssfamilly,event:{ change: SearchSfamilly()},
+            optionsCaption:'Selectionner une sous-famille...'">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+        </select>
+    </div>
+    @*<button data-bind="click: searchFamilly()">Click me</button>*@
+    <br />
+    <br />
+    <div class="styled-select blue semi-square">
+        <select data-bind="options:localisation(),
+            value:local,event:{ change: searchLocalisation()},
+            optionsCaption:'Selectionner une localisation..'">
+            <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+        </select>
+    </div>
+
+    @*<ul data-bind="foreach:uniqueCategories()">
+        <li data-bind="text: $data.result()"></li>
+    </ul>*@
+
+
+
+    <div><span data-bind="text:filteredItems().length"></span>-Produit(s)</div>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    <h6>N° Inventaire</h6>
+                </th>
+                <th>
+                    <h6>N° Fiche produit</h6>
+                </th>
+                <th>
+                    <h6>Libellé du bien</h6>
+                </th>
+                <th>
+                    <h6>Code produit</h6>
+                </th>
+                <th>
+                    <h6>Localisation</h6>
+                </th>
+
+                <th>
+                    <h6>Famille</h6>
+                </th>
+                <th>
+                    <h6>Sous-Famille</h6>
+                </th>
+                <th>
+                    <h6>Fiche produit</h6>
+                </th>
+
+
+            </tr>
+        <thead>
+        <tbody data-bind="template: { name: 'itemsTmpl', foreach: filteredItems }"></tbody>
+        <script id="itemsTmpl" type="text/html">
+            <tr>
+
+                <td data-bind="text:NumInvent"></td>
+                <td data-bind="text:NumFiche"></td>
+                <td data-bind="text:LabelImmo"></td>
+                <td data-bind="text:CodeProduit"></td>
+                <td data-bind="text:Localisation"></td>
+                <td data-bind="text:Familly"></td>
+                <td data-bind="text:SFamilly"></td>
+                <td>
+                    <a href="#" data-bind="click: openDialog.bind(this,$data.NumFiche)">Ouvrir</a>
+                </td>
+            </tr>
+        </script>
+        <tr>
+
+            @*<td></td>
+                <td class="n">Total: </td>
+                <td class="n" data-bind="text: total"></td>
+                <td></td>*@
+        </tr>
+
+    </table>
+
+</div>
+
+<div id="dialog-form" title="Nouveau produit">
+    @Html.Partial("_productCard", new dev.scan_back.Models.ProductfileViewModel())
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/knockout")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/datatables.extensions/Scroller/js/dataTables.scroller.js"></script>
+@*<script src="~/Scripts/js/bootstrap.min.js"></script>*@
+@*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+
+@*<script src="~/Scripts/js/addons/datatables-select.js"></script>
+    <script src="~/Scripts/js/addons/datatables.js"></script>*@
+
+<script>
+    var Product = @Html.Raw(Json.Encode(Model));
+</script>
+<script src="~/Scripts/custom/productFile.js"></script>

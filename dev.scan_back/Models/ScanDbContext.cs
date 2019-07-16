@@ -42,6 +42,14 @@ namespace dev.scan_back.Models
                 .HasRequired<Import>(i => i.Import)
                 .WithMany(s => s.Assort)
                 .HasForeignKey<int>(k => k.ImportId);
+
+            builder.Entity<ProductFile>()
+                .HasRequired<Operation>(o => o.Operation);
+               
+            builder.Entity<Operation>()
+                .HasMany<ProductFile>(p => p.productFiles)
+                .WithRequired(o => o.Operation);
+            
         }
 
         public DbSet<assort> assort { get; set; }
@@ -56,5 +64,8 @@ namespace dev.scan_back.Models
 
         public DbSet<ProductFile> ProductFile { get; set; }
 
+        public DbSet<Operation> Operation { get; set; }
+
+        public System.Data.Entity.DbSet<dev.scan_back.Models.OperationViewModel> OperationViewModels { get; set; }
     }
 }
