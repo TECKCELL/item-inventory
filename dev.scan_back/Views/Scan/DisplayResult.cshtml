@@ -9,12 +9,12 @@
     <!-- Example split danger button -->
     <div class="styled-select blue semi-square">
 
-        <select data-bind="event:{ change: resultScan.selectCategorie()}" id="categorie">
+        <select data-bind="options:categories,event:{ change: resultScan.selectCategorie()},optionsCaption:'Selectionner une categorie...'" id="categorie">
             <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
-            <option>Sélectionner une catégorie</option>
+            @*<option>Sélectionner une catégorie</option>
             <option>Aperitif</option>
             <option>Biere</option>
-            <option>Vins</option>
+            <option>Vins</option>*@
         </select>
 
         @*<p>

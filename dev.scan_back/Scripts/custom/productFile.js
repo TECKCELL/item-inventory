@@ -117,8 +117,8 @@ $(function () {
         },
         open: function () {
             
-            url = "/Scan/GetProductCard?number=" + $(this).data('id')();    //@Url.Action(" + "Scan" + "," + "GetProductCard"+","+ "new {id = 'XXX'})";
-            //url.replace("XXX", $(this).data('id'));
+            url = "/Scan/GetProductCard?number=" + $(this).data('id')();    
+            
             $(this).load(url);
         },
         close: function () {
@@ -179,7 +179,7 @@ $(function () {
             this.ValBuy = ko.observable(ValBuy);
             this.Tva = ko.observable(Tva);
             this.Immobilisation = ko.observableArray(['Immobilisation', 'Amortissement', 'Dotation']);
-            //this.Amortissement = ko.observableArray(['Immobilisation', 'Amortissement', 'Dotation']);
+            
     }
 var array = []
     var itemArray = []

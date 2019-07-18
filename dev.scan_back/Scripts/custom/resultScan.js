@@ -14,28 +14,46 @@
         { MtnDemarque: ko.observable() },
 
     ]),
+        self.categories = new function () {
+
+        var array = [];
+        var itemArray = resultData;
+            itemArray.forEach(function (element) {
+                array.push(element.catégorie)
+
+            });
+            return ko.utils.arrayGetDistinctValues(array).sort();
+        },
       self.selectCategorie = function() {
         var categorie = document.getElementById("categorie").value;
-        $.ajax({
-            url: 'selectByCategorie',
-            data: {
-                categorie: categorie
+        if (categorie) {
 
-            },
-            success: function (data) {
-                var cat = data;
-                if (cat.length>0) {
-                    self.result([])
-                    self.result(cat);
+            $.ajax({
+                url: 'selectByCategorie',
+                data: {
+                    categorie: categorie
+
+                },
+                success: function (data) {
+                    var cat = data;
+                    if (cat.length > 0) {
+                        self.result([])
+                        self.result(cat);
+                    }
+
+
+
+                },
+                error: function () {
+                    alert('failure');
                 }
-                
-                
-                
-            },
-            error: function () {
-                alert('failure');
-            }
-        });
+            });
+        } else {
+            var data = resultData;
+            self.result(data)
+
+        }
+       
     }
 
 }
